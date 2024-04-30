@@ -1,17 +1,17 @@
 export const getRequestByCodeClient = async (code) => {
-    let res = await fetch(`http://localhost:5508/requests?code_client=${code}`)
+    let res = await fetch(`http://localhost:5507/requests?code_client=${code}`)
     let requests = res.json()
     let [dir] = requests
     return dir
 }
 export const getRequestByDetails = async (code) => {
-    let res = await fetch(`http://localhost:5508/requests?code_request=${code}`)
+    let res = await fetch(`http://localhost:5507/requests?code_request=${code}`)
     let data = await res.json();
     return data
 }
 // 7. Devuelve un listado con los distintos estados por los que puede pasar un pedido.
 export const getAllStatus = async () => {
-    let res = await fetch("http://localhost:5508/requests")
+    let res = await fetch("http://localhost:5507/requests")
     let data = await res.json();
     // let dataUpdate = new Set(); //forma 1 para set
     let dataUpdate = []; //forma 2 para array 
@@ -27,7 +27,7 @@ export const getAllStatus = async () => {
 }
 // 8. Devuelve un listado con el código de cliente de aquellos clientes que realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
 export const getClientsRequestByYear = async (year=2008) => {
-    let res = await fetch("http://localhost:5508/requests")
+    let res = await fetch("http://localhost:5507/requests")
     let data = await res.json();
     let dataUpdate = [];
     data.forEach(request => {
@@ -40,7 +40,7 @@ export const getClientsRequestByYear = async (year=2008) => {
 }
 //9. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo.
 export const getAllLateRequest = async () => {
-    let res = await fetch("http://localhost:5508/requests?status=Entregado")
+    let res = await fetch("http://localhost:5507/requests?status=Entregado")
     let data = await res.json();
     let dataUpdate = [];
     data.forEach(request => {
@@ -57,7 +57,7 @@ export const getAllLateRequest = async () => {
 }
 // 10. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada.
 export const getAllRequestEarlyTwoDays = async () => {
-    let res = await fetch("http://localhost:5508/requests?status=Entregado")
+    let res = await fetch("http://localhost:5507/requests?status=Entregado")
     let data = await res.json();
     let dataUpdate = [];
     data.forEach(request => {
@@ -76,7 +76,7 @@ export const getAllRequestEarlyTwoDays = async () => {
 }
 // 11. Devuelve un listado de todos los pedidos que fueron **rechazados** en `2009`.
 export const getRejectRequestsByYear = async (year=2009) => {
-    let res = await fetch("http://localhost:5508/requests?status=Rechazado")
+    let res = await fetch("http://localhost:5507/requests?status=Rechazado")
     let data = await res.json();
     let dataUpdate = [];
     data.forEach(request => {
@@ -95,7 +95,7 @@ export const getRejectRequestsByYear = async (year=2009) => {
 }
 // 12. Devuelve un listado de todos los pedidos que han sido **entregados** en el mes de enero de cualquier año.
 export const getRequestDeliveredInJanuary = async () => {
-    let res = await fetch("http://localhost:5508/requests?status=Entregado")
+    let res = await fetch("http://localhost:5507/requests?status=Entregado")
     let data = await res.json();
     let dataUpdate = [];
     data.forEach(request => {
