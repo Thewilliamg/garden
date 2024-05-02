@@ -535,3 +535,120 @@ export const clientsWhoReceivedTheirRequestLate = async () => {
     );
     return data;
 }
+
+//.1EXTERNA Devuelve un listado que muestre solamente los clientes que no han realizado ningún pago.
+export const getClientsWithoutPayments = async () => {
+    let res = await fetch("http://localhost:5504/payments");
+    let dataPayments = await res.json();
+    let dataClientsFromPayments = new Set();
+    dataPayments.forEach( pay => {
+            dataClientsFromPayments.add(pay.code_client);
+    })
+    dataClientsFromPayments = [...dataClientsFromPayments]
+    //sacar lista de codigo de clientes que no estan en 'codigo de clientes que pagan'
+    let clientsWhoDontPay = [];
+    let res2 = await fetch("http://localhost:5508/clients");
+    let dataClients = await res2.json();
+    dataClients.forEach( code =>{
+        if (!(dataClientsFromPayments.includes(code.client_code))){
+            clientsWhoDontPay.push({
+                Codigo_cliente: code.client_code,
+                Nombre_Cliente_sin_pagos: code.client_name
+        })
+        }
+    })
+    console.log('Ejercicio 1 de Composicion externa')
+    return clientsWhoDontPay
+}
+
+//2.EXTERNA- Devuelve un listado que muestre solamente los clientes que no han realizado ningún pedido.
+export const getClientsWithoutRequest = async () => {
+    let res = await fetch("http://localhost:5507/requests");
+    let dataPayments = await res.json();
+    let dataClientsFromPayments = new Set();
+    dataPayments.forEach( req => {
+            dataClientsFromPayments.add(req.code_client);
+    })
+    dataClientsFromPayments = [...dataClientsFromPayments]
+    //sacar lista de codigo de clientes que no estan en 'codigo de clientes que pagan'
+    let clientsWhoDontRequest = [];
+    let res2 = await fetch("http://localhost:5508/clients");
+    let dataClients = await res2.json();
+    dataClients.forEach( code =>{
+        //clientes que no han hecho pedido
+        if (!(dataClientsFromPayments.includes(code.client_code))){
+            clientsWhoDontRequest.push({
+                Codigo: code.client_code,
+                Nombre_Cliente_sin_pedidos: code.client_name
+        })
+        }
+    })
+    console.log('******************  Ejercicio 2 - de Composicion externa  ******************')
+    return clientsWhoDontRequest
+}
+
+// 3.EXTERNA- Devuelve un listado que muestre los clientes que no han realizado ningún pago y los que no han realizado ningún pedido.
+export const getClientsWithoutPaymentsAndRequest = async () => {
+    let res = await fetch("http://localhost:5508/clients")
+    let dataclients = await res.json()
+    let data = []
+    // dataclients.forEach( client => {
+    //     const request = await getRequestByCodeClient(client.client_code);
+    //     const payment = await getPaymentByClientCode(client.client_code);
+    //     if ((!payment.length) && (!request.length)) {
+    //         data.push({
+    //             code_client: client.client_code,
+    //             name: client.client_name
+    //         })
+    //     }
+    // })
+    console.log('hello')
+    const clientsWithoutPayments = await getClientsWithoutPayments();
+    // let codebyClientWithoutPayments = [];
+    // clientsWithoutPayments.forEach(codigo=>{
+    //     codebyClientWithoutPayments.add(clientsWithoutPayments.Codigo_cliente)
+    // })
+    console.log(clientsWithoutPayments);
+    // await getClientsWithoutRequest();
+    return data
+}
+
+
+// 11.EXTERNA Devuelve un listado con los clientes que han realizado algún pedido pero no han realizado ningún pago.
+export const getClientRequestsWithoutPayments = async () => {
+    let res = await fetch("http://localhost:5508/clients")
+    let clients = await res.json()
+    let data = []
+    for (let client of clients) {
+        const payments = await getPaymentByClientCode(client.client_code)
+        const requests = await getRequestByCodeClient(client.client_code)
+        console.log(payments);
+        console.log(requests);
+        if ((!payments.length) && (requests.length)) {
+            data.push(client.client_code)
+        }
+    }
+    return data
+}//No hay ningun dato en el json que cumpla estas condiciones
+
+// 12. Devuelve un listado con los datos de los empleados que no tienen clientes asociados y el nombre de su jefe asociado.
+export const getEmployeesWithoutClientsAndTheirBosses = async () => {
+    let res = await fetch("http://localhost:5501/employees")
+    let employees = await res.json();
+    let data = []
+    for (let employee of employees) {
+        const clients = await getClientByEmployeeCode(employee.employee_code)
+        if (employee.code_boss) {
+            var name_boss = await getNameByEmployeeCode(employee.code_boss)
+        } else if (employee.cpde_boss == null) {
+            name_boss = "No tiene"
+        }
+        if (!clients.length) {
+            data.push({
+                name: employee.name,
+                boss_name: name_boss
+            })
+        }
+    }
+    return data
+}

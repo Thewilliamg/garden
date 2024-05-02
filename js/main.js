@@ -23,8 +23,10 @@ import {
     getClientsWhoMadePaymentsAndTheyCity,
     getClientsWhoDidntMadePaymentsAndTheyCity,
     getOfficeAddressOfClientsFromFuenlabrada,
-    clientsWhoReceivedTheirRequestLate
-
+    clientsWhoReceivedTheirRequestLate,
+    getClientsWithoutPayments,
+    getClientsWithoutRequest,
+    getClientsWithoutPaymentsAndRequest
 } from "./module/clients.js"
 import {
     getRequestDeliveredInJanuary,
@@ -113,5 +115,28 @@ import { request } from "http"
 // nos se usan
 // console.log(await getPaymentByClientCode(6));
 
+
 // -----------MULTI-TABLA - COMPOSICION EXTERNA---------
 // 1
+// console.log(await getClientsWithoutPayments());
+//2
+// console.log(await getClientsWithoutRequest());
+//3
+console.log(await getClientsWithoutPaymentsAndRequest());
+//4
+
+//5
+
+//6
+
+//7
+
+//8
+
+//9
+
+//10
+
+//11
+
+//12
