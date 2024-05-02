@@ -1,9 +1,11 @@
 import {
     getEmployByCode
 } from "./employees.js"
+
 import {
     getOfficesByCode
 } from "./offices.js"
+
 import {
     getPaymentByClientCode
 } from "./payments.js"
@@ -55,8 +57,6 @@ export const getAllClientsInMadrid = async () => {
     })
     return dataUpdate;
 }
-
-
 
 // Consultas multitabla (Composición interna)
 //1. Obtén un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
@@ -589,30 +589,34 @@ export const getClientsWithoutRequest = async () => {
 
 // 3.EXTERNA- Devuelve un listado que muestre los clientes que no han realizado ningún pago y los que no han realizado ningún pedido.
 export const getClientsWithoutPaymentsAndRequest = async () => {
-    let res = await fetch("http://localhost:5508/clients")
-    let dataclients = await res.json()
-    let data = []
-    // dataclients.forEach( client => {
-    //     const request = await getRequestByCodeClient(client.client_code);
-    //     const payment = await getPaymentByClientCode(client.client_code);
-    //     if ((!payment.length) && (!request.length)) {
-    //         data.push({
-    //             code_client: client.client_code,
-    //             name: client.client_name
-    //         })
-    //     }
-    // })
-    console.log('hello')
-    const clientsWithoutPayments = await getClientsWithoutPayments();
-    // let codebyClientWithoutPayments = [];
-    // clientsWithoutPayments.forEach(codigo=>{
-    //     codebyClientWithoutPayments.add(clientsWithoutPayments.Codigo_cliente)
-    // })
-    console.log(clientsWithoutPayments);
-    // await getClientsWithoutRequest();
-    return data
+
+    const withoutPayments = await getClientsWithoutPayments();
+    const withoutRequest= await getClientsWithoutRequest()
+    let commonClients = withoutPayments.map(item1 => withoutRequest.find(item2 => item1.Codigo_cliente === item2.Codigo))
+    commonClients = commonClients.filter(item => item !== undefined);
+    return commonClients
+}
+//4.EXTERNA- Devuelve un listado que muestre solamente los empleados que no tienen una oficina asociada.
+export const getEmployeesWithoutOffices = async () => {
+    let res = await fetch("http://localhost:5501/employees");
+    let employees = await res.json();
+    let data = employees.map(item => ({'full-name':[item.name, item.lastname1, item.lastname2].join(" "), "office":item.code_office}))
+    let dataset = data.filter(item => item.office === null);
+    return dataset;
 }
 
+//5. EXTERNA- Devuelve un listado que muestre solamente los empleados que no tienen un cliente asociado.
+export const getEmployeesWithoutClients = async () => {
+    let res = await fetch("http://localhost:5508/clients");
+    let employees = await res.json();
+    let data = employees.map(item => ({'client-name':item.client_name, "employee":item.code_employee_sales_manager}))
+    employees.forEach(employee => {
+        console.log(data.find(employee.id));//estoy aqui
+    })
+    // if id de employees está en "data.employee" entonces
+    //  imprimir nombre y 
+    return data;
+}
 
 // 11.EXTERNA Devuelve un listado con los clientes que han realizado algún pedido pero no han realizado ningún pago.
 export const getClientRequestsWithoutPayments = async () => {

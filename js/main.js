@@ -9,7 +9,7 @@ import {
     getBossesFullnameAndEmail,
     getAllEmployees,
     getEmployeesWithBoss,
-    getEmployeesWithBosses
+    getEmployeesWithBosses,
 
 } from "./module/employees.js"
 
@@ -26,7 +26,9 @@ import {
     clientsWhoReceivedTheirRequestLate,
     getClientsWithoutPayments,
     getClientsWithoutRequest,
-    getClientsWithoutPaymentsAndRequest
+    getClientsWithoutPaymentsAndRequest,
+    getEmployeesWithoutOffices,
+    getEmployeesWithoutClients
 } from "./module/clients.js"
 import {
     getRequestDeliveredInJanuary,
@@ -122,11 +124,11 @@ import { request } from "http"
 //2
 // console.log(await getClientsWithoutRequest());
 //3
-console.log(await getClientsWithoutPaymentsAndRequest());
+// console.log(await getClientsWithoutPaymentsAndRequest());
 //4
-
+// console.log(await getEmployeesWithoutOffices());
 //5
-
+console.log(await getEmployeesWithoutClients());
 //6
 
 //7
