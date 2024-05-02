@@ -13,20 +13,21 @@ export const getRequestByDetails = async (code) => {
 export const getAllStatus = async () => {
     let res = await fetch("http://localhost:5507/requests")
     let data = await res.json();
-    // let dataUpdate = new Set(); //forma 1 para set
-    let dataUpdate = []; //forma 2 para array 
+    let dataUpdate = new Set(); //forma 1 para set
+    // let dataUpdate = []; //forma 2 para array 
 
     data.forEach(request => {
         // request.status? dataUpdate.add(request.status): dataUpdate = dataUpdate; //forma 1 y devuelve set
-        if (!(dataUpdate.includes(request.status))) { //forma 2
-            dataUpdate.push(request.status) //forma 2
-        }
-    })
+        //if (!(dataUpdate.includes(request.status))) { //forma 2
+        dataUpdate.add(request.status) //forma 1 y 2
+        })
+        console.log('Ejercicio 7')
+        dataUpdate = [... new Set(dataUpdate)]
+        return dataUpdate;
+    }
     // dataUpdate = [... new Set(dataUpdate)]; //forma 1 y devuelve array
-    return dataUpdate;
-}
 // 8. Devuelve un listado con el código de cliente de aquellos clientes que realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
-export const getClientsRequestByYear = async (year=2008) => {
+export const getClientsRequestByYear = async (year = 2008) => {
     let res = await fetch("http://localhost:5507/requests")
     let data = await res.json();
     let dataUpdate = [];
@@ -75,7 +76,7 @@ export const getAllRequestEarlyTwoDays = async () => {
     return dataUpdate;
 }
 // 11. Devuelve un listado de todos los pedidos que fueron **rechazados** en `2009`.
-export const getRejectRequestsByYear = async (year=2009) => {
+export const getRejectRequestsByYear = async (year = 2009) => {
     let res = await fetch("http://localhost:5507/requests?status=Rechazado")
     let data = await res.json();
     let dataUpdate = [];

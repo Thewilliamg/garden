@@ -35,6 +35,9 @@ export const getAllSpainClients = async () => {
         })
     })
     return dataUpdate;
+
+
+
 }
 //16. Devuelve un listado con todos los clientes que sean de la ciudad de `Madrid` y cuyo representante de ventas tenga el código de empleado `11` o `30`.
 export const getAllClientsInMadrid = async () => {

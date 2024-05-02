@@ -35,6 +35,7 @@ import {
     getClientsRequestByYear
 } from "./module/requests.js"
 
+
 import {
     getPaymentsByYear,
     getAllPaymentStatus,
@@ -49,68 +50,68 @@ import {
     lisOfProductRangesPurchasedByClient
 } from "./module/request_details.js"
 import { log } from "console"
+import { request } from "http"
 
 //1
 // console.log(await getAllOfficesCodeAndCity());
-//2
+// 2
 // console.log(await getAllOfficesAndPhonesFromSpain());
-//3
+// 3
 // console.log(await getAllNameSurnamesAndEmailInCargeOfBossSeven());
-//4
+// 4
 // console.log(await getBossesFullnameAndEmail());
-//5
+// 5
 // console.log(await getAllEmployees());
-//6
+// 6
 // console.log(await getAllSpainClients());
-//7
- 
-//8
+// 7
+// console.log(await getAllStatus());
+// 8
 // console.log(await getPaymentsByYear(2008));
-//9
+// 9
 // console.log(await getAllLateRequest());
-//10
+// 10
 // console.log(await getAllRequestEarlyTwoDays());
-//11
-//console.log(await getRejectRequestsByYear(2009));
-//12
+// 11
+// console.log(await getRejectRequestsByYear(2009));
+// 12
 // console.log(await getRequestDeliveredInJanuary());
-//13
-//console.log(await getPaymentsByYearAndPaypal())
-//14
+// 13
+// console.log(await getPaymentsByYearAndPaypal())
+// 14
 // console.log(await getAllPaymentStatus())
-//15
-//console.log(await getProductsWithGammaOrnamentales())
-//16
+// 15
+// console.log(await getProductsWithGammaOrnamentales())
+// 16
 // console.log(await getAllClientsInMadrid());
 
 
 //  -----------------MULTI-TABLA-------------------
-//1
+// 1
 // console.log(await getClientsAndEmployeesNames());
-//2
+// 2
 // console.log(await getClientsWhoMadePayment());
-//3
+// 3
 // console.log(await getClientsWhoNotMadePayment());
-//4
+// 4
 // console.log(await getClientsWhoMadePaymentsAndTheyCity());
-//5
+// 5
 // console.log(await getClientsWhoDidntMadePaymentsAndTheyCity());
-//6
+// 6
 // console.log(await getOfficeAddressOfClientsFromFuenlabrada());
-//7
-//console.log(await getClientsEmploy());
-//8
+// 7
+// console.log(await getClientsEmploy());
+// 8
 // console.log(await getEmployeesWithBoss());
-//9
+// 9
 // console.log(await getEmployeesWithBosses());
-//10
+// 10
 // console.log(await clientsWhoReceivedTheirRequestLate());
-//11
-//console.log(await lisOfProductRangesPurchasedByClient());
+// 11
+// console.log(await lisOfProductRangesPurchasedByClient());
+
+// nos se usan
+// console.log(await getPaymentByClientCode(6));
 
 // -----------MULTI-TABLA - COMPOSICION EXTERNA---------
-//nos se usan
-//  console.log(await getPaymentByClientCode(6));
-
-//dañado
-//console.log(await getClientsRequestByDate(2008));
+// 1
