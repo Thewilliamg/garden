@@ -14,6 +14,8 @@ import {
     getAllLateRequest
 } from "./requests.js"
 
+import { getRequestDetailsByProductCode } from "./request_details.js"
+
 export const getNameByClientCode = async (code) => {
     let res = await fetch(`http://localhost:5508/clients?client_code=${code}`)
     let dataClient = await res.json()
@@ -26,6 +28,12 @@ export const getClientByCode = async (code) => {
     let dataClient = await res.json()
     return dataClient
 }
+export const getClientByEmployeeCode = async (code) => {
+    let res = await fetch(`http://localhost:5508/clients?code_employee_sales_manager=${code}`)
+    let dataClient = await res.json()
+    return dataClient
+}
+
 // 6. Devuelve un listado con el nombre de los todos los clientes españoles.
 export const getAllSpainClients = async () => {
     let res = await fetch("http://localhost:5508/clients?country=Spain")
@@ -607,15 +615,101 @@ export const getEmployeesWithoutOffices = async () => {
 
 //5. EXTERNA- Devuelve un listado que muestre solamente los empleados que no tienen un cliente asociado.
 export const getEmployeesWithoutClients = async () => {
-    let res = await fetch("http://localhost:5508/clients");
-    let employees = await res.json();
-    let data = employees.map(item => ({'client-name':item.client_name, "employee":item.code_employee_sales_manager}))
-    employees.forEach(employee => {
-        console.log(data.find(employee.id));//estoy aqui
-    })
-    // if id de employees está en "data.employee" entonces
-    //  imprimir nombre y 
+    let res = await fetch("http://localhost:5501/employees")
+    let employees = await res.json()
+    let data = []
+    for (let employee of employees) {
+        const clients = await getClientByEmployeeCode(employee.employee_code)
+        if (!clients.length) {
+            data.push({
+                code: employee.employee_code,
+                name: employee.name
+            })
+        }
+    }
+    return data
+}
+//6. EXTERNA Devuelve un listado que muestre solamente los empleados que no tienen un cliente asociado junto con los datos de la oficina donde trabajan.
+export const getEmployeesWithoutClientsAndTheirOffices = async () => {
+    const res = await fetch("http://localhost:5501/employees");
+    const employees = await res.json();
+    const data = [];
+
+    for (const emp of employees) {
+        const clients = await getClientByEmployeeCode(emp.employee_code);
+        const offices = await getOfficesByCode(emp.code_office);
+
+        if (clients.length === 0 && offices && offices.length > 0) {
+            const matchOffice = offices.find(office => office.code_office === emp.code_office);
+            if (matchOffice) {
+                data.push({
+                    code: emp.employee_code,
+                    name: emp.name,
+                    office: matchOffice
+                });
+            }
+        }
+    }
+
     return data;
+}
+// 7. EXTERNA Devuelve un listado que muestre los empleados que no tienen una oficina asociada y los que no tienen un cliente asociado.
+export const getEmployeesWithoutOfficeAndWithoutClients = async () => {
+    let res = await fetch("http://localhost:5501/employees")
+    let employees = await res.json()
+    let datas = [];
+    employees.forEach((emp) => {
+        const clients = getClientByEmployeeCode(emp.employee_code)
+        if (!clients.length && emp.code_office===null) {
+            console.log(!clients.length && emp.code_office===null)
+            datas.push({
+                code: emp.employee_code,
+                name: emp.name
+            });
+            console.log("exit")
+        }
+    })
+    return datas
+} // Nota, en este caso todos tienen asociado una oficina va a dar vacio
+
+//8, EXTERNO Devuelve un listado de los productos que nunca han aparecido en un pedido.
+export const getProductsWithoutRequest = async () => {
+    let res = await fetch("http://localhost:5505/products")
+    let products = await res.json()
+    let data = []
+    products.forEach( (p) =>{
+        const details = getRequestDetailsByProductCode(p.code_product)
+        if (!details.length) {
+            console.log(details)
+            data.push({
+                product_code:p.code_product,
+                product_name:p.name,
+                gama:p.gama,       
+            })
+        }
+    })
+    let datao = data.sort((a,b)=>b.id-a.id)
+    return datao
+}
+
+//9.EXTERNA - Devuelve un listado de los productos que nunca han aparecido en un pedido. 
+//El resultado debe mostrar el nombre, la descripción y la imagen del producto.
+
+export const getProductsWithoutRequestWithDescription = async () => {
+    let res = await fetch("http://localhost:5505/products")
+    let products = await res.json()
+    let data = []
+    for (let product of products) {
+        const details = await getRequestDetailsByProductCode(product.code_product)
+        if (!details.length) {
+            data.push({
+                product_code:product.code_product,
+                product_name:product.name,
+                description:product.description,   
+            })
+        }
+    }
+    return data.sort((a,b)=>a.id-b.id)
 }
 
 // 11.EXTERNA Devuelve un listado con los clientes que han realizado algún pedido pero no han realizado ningún pago.

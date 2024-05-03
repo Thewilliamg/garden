@@ -28,7 +28,11 @@ import {
     getClientsWithoutRequest,
     getClientsWithoutPaymentsAndRequest,
     getEmployeesWithoutOffices,
-    getEmployeesWithoutClients
+    getEmployeesWithoutClients,
+    getEmployeesWithoutClientsAndTheirOffices,
+    getEmployeesWithoutOfficeAndWithoutClients,
+    getProductsWithoutRequest,
+    getProductsWithoutRequestWithDescription
 } from "./module/clients.js"
 import {
     getRequestDeliveredInJanuary,
@@ -128,15 +132,15 @@ import { request } from "http"
 //4
 // console.log(await getEmployeesWithoutOffices());
 //5
-console.log(await getEmployeesWithoutClients());
+// console.log(await getEmployeesWithoutClients());
 //6
-
+// console.log(await getEmployeesWithoutClientsAndTheirOffices());
 //7
-
+// console.log(await getEmployeesWithoutOfficeAndWithoutClients()); //va a dar vacio
 //8
-
+// console.log(await getProductsWithoutRequest())
 //9
-
+console.log(await getProductsWithoutRequestWithDescription())
 //10
 
 //11
