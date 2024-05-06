@@ -32,7 +32,8 @@ import {
     getEmployeesWithoutClientsAndTheirOffices,
     getEmployeesWithoutOfficeAndWithoutClients,
     getProductsWithoutRequest,
-    getProductsWithoutRequestWithDescription
+    getProductsWithoutRequestWithDescription,
+    OfficesExcludingSalesEmpWithFruitPurchases
 } from "./module/clients.js"
 import {
     getRequestDeliveredInJanuary,
@@ -140,9 +141,9 @@ import { request } from "http"
 //8
 // console.log(await getProductsWithoutRequest());
 //9
-console.log(await getProductsWithoutRequestWithDescription());
+//console.log(await getProductsWithoutRequestWithDescription());
 //10
-
+console.log(await OfficesExcludingSalesEmpWithFruitPurchases());
 //11
 
 //12

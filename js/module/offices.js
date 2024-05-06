@@ -1,6 +1,19 @@
 import {
-
+    getEmployeeByOfficeCode
 } from "./employees.js";
+
+import{
+    getClientByEmployeeCode
+} from "./clients.js"
+
+import {
+    getRequestByCodeClient
+} from "./requests.js"
+
+import {
+    getRequestDetailsByRequest
+} from "./request_details.js"
+import {getProductByCode} from "./products.js"
 
 //1. Devuelve un listado con el còdigo de oficina y la ciudad donde hay oficinas
 export const getAllOfficesCodeAndCity = async () => {
@@ -35,3 +48,25 @@ export const getOfficesByCode = async (code) => {
     return dataOffice
 }
 
+export const getSalesRepsWithFruitPurchases = async (offices) => {
+    let salesRepsWithFruitPurchases = [];
+    for (let office of offices) {
+        const employees = await getEmployeeByOfficeCode(office.code_office);
+        for (let employee of employees) {
+            const clients = await getClientByEmployeeCode(employee.employee_code);
+            for (let client of clients) {
+                let requests = await getRequestByCodeClient(client.client_code);
+                for (let request of requests) {
+                    let details = await getRequestDetailsByRequest(request.code_request);
+                    for (let detail of details) {
+                        let product = await getProductByCode(detail.product_code);
+                        if (product.gama === "Frutales") {
+                            salesRepsWithFruitPurchases.push({ employee_code: employee.employee_code, office_code: office.code_office });
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return salesRepsWithFruitPurchases;
+}

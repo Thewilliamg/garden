@@ -14,6 +14,12 @@ export const getRequestDetailsByProductCode = async (code) => {
     return details
 }
 
+export const getRequestDetailsByRequest = async (code) => {
+    let res = await fetch(`http://localhost:5506/request_details?code_request=${code}`);
+    let details = await res.json()
+    return details
+}
+
 // 11. Devuelve un listado de las diferentes gamas de producto que ha comprado cada cliente.
 export const lisOfProductRangesPurchasedByClient = async () => {
     let res = await fetch(`http://localhost:5506/request_details`)

@@ -3,7 +3,8 @@ import {
 } from "./employees.js"
 
 import {
-    getOfficesByCode
+    getOfficesByCode,
+    getSalesRepsWithFruitPurchases
 } from "./offices.js"
 
 import {
@@ -704,12 +705,34 @@ export const getProductsWithoutRequestWithDescription = async () => {
         if (!details.length) {
             data.push({
                 product_code:product.code_product,
+                code_number: product.code_product.match(/\d+/)[0],
                 product_name:product.name,
                 description:product.description,   
             })
         }
     }
-    return data.sort((a,b)=>a.id-b.id);
+    // organizar por numero de codigo de producto
+    let datasort = data.sort((a,b) => a.code_number-b.code_number);
+    let productosSinDescripcion = datasort.map(producto => {
+        let { code_number, ...productoSinDescripcion } = producto;
+        return productoSinDescripcion;
+      });
+    return productosSinDescripcion
+}
+
+//10.EXTERNA 0. Devuelve las oficinas donde **no trabajan** ninguno de los 
+// empleados que hayan sido los representantes de ventas de algún cliente que haya realizado la compra de algún producto de la gama `Frutales`.
+export const OfficesExcludingSalesEmpWithFruitPurchases = async () => {
+    let res = await fetch("http://localhost:5503/offices");
+    let offices = await res.json();
+    
+    //funcion para encontrar todas las oficinas que estan asociadas con un cliente que comprara algo de gama Frutales
+    const salesRepsWithFruitPurchases = await getSalesRepsWithFruitPurchases(offices);
+    const officesWithoutSalesReps = offices.filter(office => {
+        return !salesRepsWithFruitPurchases.some(salesEmp => salesEmp.office_code == office.code_office);
+    });
+
+    return officesWithoutSalesReps.map(office => office.code_office);
 }
 
 // 11.EXTERNA Devuelve un listado con los clientes que han realizado algún pedido pero no han realizado ningún pago.
