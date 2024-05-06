@@ -138,9 +138,9 @@ import { request } from "http"
 //7
 // console.log(await getEmployeesWithoutOfficeAndWithoutClients()); //va a dar vacio
 //8
-// console.log(await getProductsWithoutRequest())
+// console.log(await getProductsWithoutRequest());
 //9
-console.log(await getProductsWithoutRequestWithDescription())
+console.log(await getProductsWithoutRequestWithDescription());
 //10
 
 //11

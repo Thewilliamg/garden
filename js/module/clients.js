@@ -696,11 +696,11 @@ export const getProductsWithoutRequest = async () => {
 //El resultado debe mostrar el nombre, la descripción y la imagen del producto.
 
 export const getProductsWithoutRequestWithDescription = async () => {
-    let res = await fetch("http://localhost:5505/products")
-    let products = await res.json()
-    let data = []
+    let res = await fetch("http://localhost:5505/products");
+    let products = await res.json();
+    let data = [];
     for (let product of products) {
-        const details = await getRequestDetailsByProductCode(product.code_product)
+        const details = getRequestDetailsByProductCode(product.code_product)
         if (!details.length) {
             data.push({
                 product_code:product.code_product,
@@ -709,7 +709,7 @@ export const getProductsWithoutRequestWithDescription = async () => {
             })
         }
     }
-    return data.sort((a,b)=>a.id-b.id)
+    return data.sort((a,b)=>a.id-b.id);
 }
 
 // 11.EXTERNA Devuelve un listado con los clientes que han realizado algún pedido pero no han realizado ningún pago.
