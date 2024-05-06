@@ -737,13 +737,12 @@ export const OfficesExcludingSalesEmpWithFruitPurchases = async () => {
 
 // 11.EXTERNA Devuelve un listado con los clientes que han realizado algún pedido pero no han realizado ningún pago.
 export const getClientRequestsWithoutPayments = async () => {
-    let res = await fetch("http://localhost:5508/clients")
-    let clients = await res.json()
-    let data = []
+    let res = await fetch("http://localhost:5508/clients");
+    let clients = await res.json();
+    let data = [];
     for (let client of clients) {
         const payments = await getPaymentByClientCode(client.client_code)
         const requests = await getRequestByCodeClient(client.client_code)
-        console.log(payments);
         console.log(requests);
         if ((!payments.length) && (requests.length)) {
             data.push(client.client_code)
