@@ -56,9 +56,9 @@ export const getSalesRepsWithFruitPurchases = async (offices) => {
             const clients = await getClientByEmployeeCode(employee.employee_code);
             for (let client of clients) {
                 let requests = await getRequestByCodeClient(client.client_code);
-                for (let request of requests) {
+                for (let request in requests) {
                     let details = await getRequestDetailsByRequest(request.code_request);
-                    for (let detail of details) {
+                    for (let detail in details) {
                         let product = await getProductByCode(detail.product_code);
                         if (product.gama === "Frutales") {
                             salesRepsWithFruitPurchases.push({ employee_code: employee.employee_code, office_code: office.code_office });
