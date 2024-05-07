@@ -42,7 +42,8 @@ import {
     getAllRequestEarlyTwoDays,
     getAllLateRequest,
     getAllStatus,
-    getClientsRequestByYear
+    getClientsRequestByYear,
+    getRequestByCodeClient
 } from "./module/requests.js"
 
 

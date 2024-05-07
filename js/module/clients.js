@@ -12,7 +12,8 @@ import {
 } from "./payments.js"
 import {
     getRequestByCodeClient,
-    getAllLateRequest
+    getAllLateRequest,
+    getRequestByCodeClientexample11
 } from "./requests.js"
 
 import { getRequestDetailsByProductCode } from "./request_details.js"
@@ -741,18 +742,21 @@ export const getClientRequestsWithoutPayments = async () => {
     let res = await fetch("http://localhost:5508/clients");
     let clients = await res.json();
     let data = [];
-    clients.forEach( async (client) => {
-        let payments = await getPaymentByClientCode(client.client_code)
-        let requests = await getRequestByCodeClient(client.code_client)
-        console.log(requests.length);
-        // if ((!(payments.length)) && (requests.length)) {
-                // console.log(!payments.length);
-                // console.log((requests.length));
-            //     data.push(client.client_code);
-            // }        
-    })
-    return 1
-}//No hay ningun dato en el json que cumpla estas condiciones
+    for (let i = 0; i < clients.length; i++) {
+      let client = clients[i];
+      let payments = await getPaymentByClientCode(client.client_code);
+      let requests = await getRequestByCodeClientexample11(client.client_code);
+      if ((!payments.length) && (!!requests.length)) {
+        data.push(client.client_code);
+      }
+    }
+    return data;
+  }
+//No hay ningun dato en el json que cumpla estas condiciones
+
+
+
+
 
 // 12. Devuelve un listado con los datos de los empleados que no tienen clientes asociados y el nombre de su jefe asociado.
 export const getEmployeesWithoutClientsAndTheirBosses = async () => {

@@ -1,9 +1,16 @@
 export const getRequestByCodeClient = async (code) => {
     let res = await fetch(`http://localhost:5507/requests?code_client=${code}`)
     let requests = await res.json()
-    let [dir] = requests;
+    let [dir] = requests; //le pasa solo el primer dato que encuentre de request a dir
     return dir
 }
+export const getRequestByCodeClientexample11 = async (code) => {
+    let res = await fetch(`http://localhost:5507/requests?code_client=${code}`)
+    let requests = await res.json()
+    return requests
+}
+
+
 export const getRequestByDetails = async (code) => {
     let res = await fetch(`http://localhost:5507/requests?code_request=${code}`)
     let data = await res.json();
