@@ -735,20 +735,23 @@ export const OfficesExcludingSalesEmpWithFruitPurchases = async () => {
     return officesWithoutSalesReps.map(office => office.code_office);
 }
 
-// 11.EXTERNA Devuelve un listado con los clientes que han realizado algún pedido pero no han realizado ningún pago.
+// 11.EXTERNA Devuelve un listado con los clientes que han realizado algún pedido 
+// pero no han realizado ningún pago.
 export const getClientRequestsWithoutPayments = async () => {
     let res = await fetch("http://localhost:5508/clients");
     let clients = await res.json();
     let data = [];
-    for (let client of clients) {
-        const payments = await getPaymentByClientCode(client.client_code)
-        const requests = await getRequestByCodeClient(client.client_code)
-        console.log(requests);
-        if ((!payments.length) && (requests.length)) {
-            data.push(client.client_code)
-        }
-    }
-    return data
+    clients.forEach( async (client) => {
+        let payments = await getPaymentByClientCode(client.client_code)
+        let requests = await getRequestByCodeClient(client.code_client)
+        console.log(requests.length);
+        // if ((!(payments.length)) && (requests.length)) {
+                // console.log(!payments.length);
+                // console.log((requests.length));
+            //     data.push(client.client_code);
+            // }        
+    })
+    return 1
 }//No hay ningun dato en el json que cumpla estas condiciones
 
 // 12. Devuelve un listado con los datos de los empleados que no tienen clientes asociados y el nombre de su jefe asociado.
