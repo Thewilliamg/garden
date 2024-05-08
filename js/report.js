@@ -1,46 +1,69 @@
+import {
+    getAllOfficesCodeAndCity,
+    getAllOfficesAndPhonesFromSpain,
+
+} from "./module/offices.js"
 
 import {
+    getAllNameSurnamesAndEmailInCargeOfBossSeven,
+    getBossesFullnameAndEmail,
+    getAllEmployees,
+    getEmployeesWithBoss,
+    getEmployeesWithBosses,
+
+} from "./module/employees.js"
+
+import {
+    getAllSpainClients,
+    getAllClientsInMadrid,
     getClientsEmploy,
     getClientsAndEmployeesNames,
     getClientsWhoMadePayment,
     getClientsWhoNotMadePayment,
     getClientsWhoMadePaymentsAndTheyCity,
-    getOfficeAddressOfClientsFromFuenlabrada,
     getClientsWhoDidntMadePaymentsAndTheyCity,
+    getOfficeAddressOfClientsFromFuenlabrada,
     clientsWhoReceivedTheirRequestLate,
-    getAllSpainClients,
-    getAllClientsInMadrid
-} from "./module/clients.js";
+    getClientsWithoutPayments,
+    getClientsWithoutRequest,
+    getClientsWithoutPaymentsAndRequest,
+    getEmployeesWithoutOffices,
+    getEmployeesWithoutClients,
+    getEmployeesWithoutClientsAndTheirOffices,
+    getEmployeesWithoutOfficeAndWithoutClients,
+    getProductsWithoutRequest,
+    getProductsWithoutRequestWithDescription,
+    OfficesExcludingSalesEmpWithFruitPurchases,
+    getClientRequestsWithoutPayments
+} from "./module/clients.js"
 import {
-    getEmployeesWithBoss,
-    getEmployeesWithBosses,
-    getAllNameSurnamesAndEmailInCargeOfBossSeven,
-    getBossesFullnameAndEmail,
-    getAllEmployees
-} from "./module/employees.js"
-
-import {
-    lisOfProductRangesPurchasedByClient
-} from "./module/request_details.js"
-import {
-    getAllOfficesCodeAndCity,
-    getAllOfficesAndPhonesFromSpain,
-} from "./module/offices.js"
-import {
+    getRequestDeliveredInJanuary,
+    getRejectRequestsByYear,
+    getAllRequestEarlyTwoDays,
+    getAllLateRequest,
     getAllStatus,
     getClientsRequestByYear,
-    getAllLateRequest,
-    getAllRequestEarlyTwoDays,
-    getRejectRequestsByYear,
-    getRequestDeliveredInJanuary
+    getRequestByCodeClient
 } from "./module/requests.js"
+
+
 import {
     getPaymentsByYear,
-    getAllPaymentStatus
+    getAllPaymentStatus,
+    getPaymentByClientCode,
+    getPaymentsByYearAndPaypal
 } from "./module/payments.js"
+
 import {
     getProductsWithGammaOrnamentales
 } from "./module/products.js"
+import {
+    lisOfProductRangesPurchasedByClient
+} from "./module/request_details.js"
+
+// import { request } from "http"
+
+
 const queryAboutOneTable1 = document.querySelector("#queryAboutOneTable1");
 queryAboutOneTable1.addEventListener("click", async (e) => {
     let [, report__container] = queryAboutOneTable1.children
@@ -48,7 +71,7 @@ queryAboutOneTable1.addEventListener("click", async (e) => {
         let data = await getAllOfficesCodeAndCity();
         let plantilla = "";
         console.log(data);
-        var i = 1
+        var i = 1;
         data.forEach(val => {
             plantilla += `  
                 <div class="report__card">
@@ -63,7 +86,7 @@ queryAboutOneTable1.addEventListener("click", async (e) => {
                 </div>
             </div>
             `;
-            i += 1
+            i += 1;
         });
         report__container.innerHTML = plantilla;
     }

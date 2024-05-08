@@ -61,8 +61,7 @@ import {
 import {
     lisOfProductRangesPurchasedByClient
 } from "./module/request_details.js"
-import { log } from "console"
-import { request } from "http"
+
 
 // --PRINCIPALES
 //1
@@ -80,7 +79,7 @@ import { request } from "http"
 // 7
 // console.log(await getAllStatus());
 // 8
-// console.log(await getPaymentsByYear(2008));
+console.log(await getPaymentsByYear(2008));
 // 9
 // console.log(await getAllLateRequest());
 // 10
