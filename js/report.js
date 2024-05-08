@@ -766,7 +766,7 @@ queryAboutTable11.addEventListener("click", async (e) => {
                 </div>
                 <div class="card__body">
                     <div class="body__marck">
-                    <p><b>Gama: </b>${val.gama}</p>
+                        <p><b>Gama: </b>${ val.gama } </p>
                     </div>
                 </div>
             </div>
