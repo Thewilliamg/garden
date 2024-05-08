@@ -97,7 +97,10 @@ export const lisOfProductRangesPurchasedByClient = async () => {
             existingClient.gama.push(obj.gama);
           }
         } else {
-          clientsArray.push({ code_client: obj.code_client, client_name: obj.client_name, gama: [obj.gama] });
+          clientsArray.push({ 
+            code_client: obj.code_client, 
+            client_name: obj.client_name, 
+            gama: [obj.gama] });
         }
       });
       

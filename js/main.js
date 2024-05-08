@@ -79,7 +79,7 @@ import {
 // 7
 // console.log(await getAllStatus());
 // 8
-console.log(await getPaymentsByYear(2008));
+// console.log(await getPaymentsByYear(2008));
 // 9
 // console.log(await getAllLateRequest());
 // 10
@@ -120,7 +120,7 @@ console.log(await getPaymentsByYear(2008));
 // 10
 // console.log(await clientsWhoReceivedTheirRequestLate());
 // 11
-// console.log(await lisOfProductRangesPurchasedByClient());
+console.log(await lisOfProductRangesPurchasedByClient());
 
 
 
