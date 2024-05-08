@@ -34,7 +34,8 @@ import {
     getProductsWithoutRequest,
     getProductsWithoutRequestWithDescription,
     OfficesExcludingSalesEmpWithFruitPurchases,
-    getClientRequestsWithoutPayments
+    getClientRequestsWithoutPayments,
+    getEmployeesWithoutClientsAndTheirBosses
 } from "./module/clients.js"
 import {
     getRequestDeliveredInJanuary,
@@ -63,6 +64,7 @@ import {
 import { log } from "console"
 import { request } from "http"
 
+// --PRINCIPALES
 //1
 // console.log(await getAllOfficesCodeAndCity());
 // 2
@@ -121,8 +123,6 @@ import { request } from "http"
 // 11
 // console.log(await lisOfProductRangesPurchasedByClient());
 
-// nos se usan
-// console.log(await getPaymentByClientCode(6));
 
 
 // -----------MULTI-TABLA - COMPOSICION EXTERNA---------
@@ -147,6 +147,6 @@ import { request } from "http"
 //10
 //console.log(await OfficesExcludingSalesEmpWithFruitPurchases());
 //11
-console.log(await getClientRequestsWithoutPayments());
+// console.log(await getClientRequestsWithoutPayments());
 //12
-//
+// console.log(await getEmployeesWithoutClientsAndTheirBosses());

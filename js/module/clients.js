@@ -1,5 +1,6 @@
 import {
-    getEmployByCode
+    getEmployByCode,
+    getNameByEmployeeCode
 } from "./employees.js"
 
 import {
@@ -740,7 +741,7 @@ export const OfficesExcludingSalesEmpWithFruitPurchases = async () => {
 // pero no han realizado ningún pago.
 export const getClientRequestsWithoutPayments = async () => {
     let res = await fetch("http://localhost:5508/clients");
-    let clients = await res.json();
+    let clients = await res.json()
     let data = [];
     for (let i = 0; i < clients.length; i++) {
       let client = clients[i];
@@ -751,25 +752,25 @@ export const getClientRequestsWithoutPayments = async () => {
       }
     }
     return data;
-  }
-//No hay ningun dato en el json que cumpla estas condiciones
+  }//Ningun dato que cumple estas caracteristicas
 
 
+// 12.EXTERNA- Devuelve un listado con los datos de los empleados que no 
+// tienen clientes asociados y el nombre de su jefe asociado.
 
-
-
-// 12. Devuelve un listado con los datos de los empleados que no tienen clientes asociados y el nombre de su jefe asociado.
-export const getEmployeesWithoutClientsAndTheirBosses = async () => {
-    let res = await fetch("http://localhost:5501/employees")
+export const getEmployeesWithoutClientsAndTheirBosses =async () => {
+    let res = await fetch("http://localhost:5501/employees");
     let employees = await res.json();
-    let data = []
+    let data = [];
     for (let employee of employees) {
-        const clients = await getClientByEmployeeCode(employee.employee_code)
         if (employee.code_boss) {
             var name_boss = await getNameByEmployeeCode(employee.code_boss)
-        } else if (employee.cpde_boss == null) {
+        } 
+        else if (employee.cpde_boss == null) {
             name_boss = "No tiene"
         }
+        //Sin clientes
+        const clients = await getClientByEmployeeCode(employee.employee_code)
         if (!clients.length) {
             data.push({
                 name: employee.name,
