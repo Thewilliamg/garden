@@ -60,8 +60,7 @@ import {
 import {
     lisOfProductRangesPurchasedByClient
 } from "./module/request_details.js"
-import { log } from "console"
-import { request } from "http"
+
 
 //1
 // console.log(await getAllOfficesCodeAndCity());
@@ -78,7 +77,7 @@ import { request } from "http"
 // 7
 // console.log(await getAllStatus());
 // 8
-// console.log(await getPaymentsByYear(2008));
+console.log(await getPaymentsByYear(2008));
 // 9
 // console.log(await getAllLateRequest());
 // 10
@@ -147,6 +146,6 @@ import { request } from "http"
 //10
 //console.log(await OfficesExcludingSalesEmpWithFruitPurchases());
 //11
-console.log(await getClientRequestsWithoutPayments());
+// console.log(await getClientRequestsWithoutPayments());
 //12
 //
