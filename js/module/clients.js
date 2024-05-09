@@ -615,7 +615,7 @@ export const getEmployeesWithoutOffices = async () => {
     let res = await fetch("http://localhost:5501/employees");
     let employees = await res.json();
     let data = employees.map(item => 
-        ({'full-name':[item.name, item.lastname1, item.lastname2].join(" "), "office":item.code_office}))
+        ({'name':[item.name, item.lastname1, item.lastname2].join(" "), "office":item.code_office}))
     let dataset = data.filter(item => 
         item.office === null);
     return dataset;//todos tienen oficina

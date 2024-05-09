@@ -123,7 +123,6 @@ import {
 // console.log(await lisOfProductRangesPurchasedByClient());
 
 
-
 // -----------MULTI-TABLA - COMPOSICION EXTERNA---------
 // 1
 // console.log(await getClientsWithoutPayments());

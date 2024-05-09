@@ -856,17 +856,12 @@ queryAboutExternalTable4.addEventListener("click", async (e) => {
     if (!report__container.innerHTML) {
         let data = await getEmployeesWithoutOffices();
         let plantilla = "";
-        // console.log(data);
+        console.log(data);
         data.forEach(val => {
             plantilla += `
                 <div class="report__card">
                 <div class="card__title">
-                    <div>Full-name: ${val.full-name}</div>
-                </div>
-                <div class="card__body">
-                    <div class="body__marck">
-                        <p><b>Oficina: </b>Sin oficina </p>
-                    </div>
+                    <div>Empleado sin oficina: ${val.name}</div>
                 </div>
                 </div>
             `;
