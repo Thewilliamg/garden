@@ -120,7 +120,7 @@ import {
 // 10
 // console.log(await clientsWhoReceivedTheirRequestLate());
 // 11
-console.log(await lisOfProductRangesPurchasedByClient());
+// console.log(await lisOfProductRangesPurchasedByClient());
 
 
 
@@ -132,7 +132,7 @@ console.log(await lisOfProductRangesPurchasedByClient());
 //3
 // console.log(await getClientsWithoutPaymentsAndRequest());
 //4
-// console.log(await getEmployeesWithoutOffices());
+console.log(await getEmployeesWithoutOffices());
 //5
 // console.log(await getEmployeesWithoutClients());
 //6

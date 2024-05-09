@@ -53,11 +53,12 @@ body {
 }
 .title_exercise{
     display: flex;
-    color: var(--color8);
-    background-color: var(--color2);
-    align-self: center;
+    color: var(--color);
+    background-color: var(--color6);
+    align-items: center;
     justify-content: center;
-    margin: 0 0 10px 0px
+    margin: 0 0 10px 0px;
+    height: 35px;
 }
 .report__user {
     /* background: green; */
@@ -191,30 +192,38 @@ details {
     font-family: "Roboto-Bold";
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    height: 50px;
+    height: 34px;
     display: flex;
     align-items: center;
     padding: 0 15px;
 }
 .card__body{
+    display: flex;
     background: var(--color8);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    padding: 10px 15px 10px;
+    padding: 6px 2px 10px;
+    box-sizing: content-box;
+    height: min-content;
 }
 .body__marck{
-    border: 1px solid var(--color6);
-    padding: 8px;
-    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 2px solid var(--color6);
+    padding: 4px;
     overflow-x: auto;
+    font-size: 95%;
 }
 
 .card__body b{
     color: var(--color5);
 }
 .card__body p{
-    margin: 10px 0px;
+    margin: 0px 0px 0px 10px;
     color: var(--color6);
+    align-self: left;
+    justify-self: center;
 }
 .card__footer{
     background: var(--color2);

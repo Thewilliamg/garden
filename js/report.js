@@ -681,7 +681,7 @@ queryAboutTable8.addEventListener("click", async (e) => {
     if (!report__container.innerHTML) {
         let data = await getEmployeesWithBoss();
         let plantilla = "";
-        console.log(data);
+        // console.log(data);
         data.forEach(val => {
             plantilla += `
                 <div class="report__card">
@@ -706,7 +706,7 @@ queryAboutTable9.addEventListener("click", async (e) => {
     if (!report__container.innerHTML) {
         let data = await getEmployeesWithBosses();
         let plantilla = "";
-        console.log(data);
+        // console.log(data);
         data.forEach(val => {
             plantilla += `
                 <div class="report__card">
@@ -756,7 +756,7 @@ queryAboutTable11.addEventListener("click", async (e) => {
     if (!report__container.innerHTML) {
         let data = await lisOfProductRangesPurchasedByClient();
         let plantilla = "";
-        console.log(data);
+        // console.log(data);
         data.forEach(val => {
             plantilla += `
                 <div class="report__card">
@@ -771,6 +771,106 @@ queryAboutTable11.addEventListener("click", async (e) => {
             </div>
             `;
         });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+//Conexiones externas
+
+const queryAboutExternalTable1 = document.querySelector("#queryAboutExternalTable1");
+queryAboutExternalTable1.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable1.children
+    if (!report__container.innerHTML) {
+        let data = await getClientsWithoutPayments();
+        let plantilla = "";
+        // console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Codigo del cliente: ${val.Codigo_cliente}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Cliente sin pagos: </b>${ val.Nombre_Cliente_sin_pagos} </p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+const queryAboutExternalTable2 = document.querySelector("#queryAboutExternalTable2");
+queryAboutExternalTable2.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable2.children
+    if (!report__container.innerHTML) {
+        let data = await getClientsWithoutRequest();
+        let plantilla = "";
+        // console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Codigo del cliente: ${val.Codigo}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Cliente sin pedidos: </b>${ val.Nombre_Cliente_sin_pedidos} </p>
+                    </div>
+                </div>
+                </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+const queryAboutExternalTable3 = document.querySelector("#queryAboutExternalTable3");
+queryAboutExternalTable3.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable3.children
+    if (!report__container.innerHTML) {
+        let data = await getClientsWithoutPaymentsAndRequest();
+        let plantilla = "";
+        // console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Codigo del cliente sin pago y sin pedido: ${val.Codigo}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Cliente sin pedidos: </b>${ val.Nombre_Cliente_sin_pedidos} </p>
+                    </div>
+                </div>
+                </div>
+            `;
+        }); 
+        report__container.innerHTML = plantilla;
+    }
+})
+const queryAboutExternalTable4 = document.querySelector("#queryAboutExternalTable4");
+queryAboutExternalTable4.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable4.children
+    if (!report__container.innerHTML) {
+        let data = await getEmployeesWithoutOffices();
+        let plantilla = "";
+        // console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Full-name: ${val.full-name}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Oficina: </b>Sin oficina </p>
+                    </div>
+                </div>
+                </div>
+            `;
+        }); 
         report__container.innerHTML = plantilla;
     }
 })

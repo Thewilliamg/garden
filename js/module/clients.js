@@ -603,17 +603,22 @@ export const getClientsWithoutPaymentsAndRequest = async () => {
 
     const withoutPayments = await getClientsWithoutPayments();
     const withoutRequest= await getClientsWithoutRequest()
-    let commonClients = withoutPayments.map(item1 => withoutRequest.find(item2 => item1.Codigo_cliente === item2.Codigo))
-    commonClients = commonClients.filter(item => item !== undefined);
+    let commonClients = withoutPayments.map(item1 => 
+        withoutRequest.find(item2 => 
+            item1.Codigo_cliente === item2.Codigo))
+    commonClients = commonClients.filter(item => 
+        item !== undefined);
     return commonClients
 }
 //4.EXTERNA- Devuelve un listado que muestre solamente los empleados que no tienen una oficina asociada.
 export const getEmployeesWithoutOffices = async () => {
     let res = await fetch("http://localhost:5501/employees");
     let employees = await res.json();
-    let data = employees.map(item => ({'full-name':[item.name, item.lastname1, item.lastname2].join(" "), "office":item.code_office}))
-    let dataset = data.filter(item => item.office === null);
-    return dataset;
+    let data = employees.map(item => 
+        ({'full-name':[item.name, item.lastname1, item.lastname2].join(" "), "office":item.code_office}))
+    let dataset = data.filter(item => 
+        item.office === null);
+    return dataset;//todos tienen oficina
 }
 
 //5. EXTERNA- Devuelve un listado que muestre solamente los empleados que no tienen un cliente asociado.
