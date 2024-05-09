@@ -63,7 +63,6 @@ import {
 
 // import { request } from "http"
 
-
 const queryAboutOneTable1 = document.querySelector("#queryAboutOneTable1");
 queryAboutOneTable1.addEventListener("click", async (e) => {
     let [, report__container] = queryAboutOneTable1.children

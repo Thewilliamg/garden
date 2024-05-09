@@ -51,7 +51,14 @@ body {
 .main__report {
     /* background: blue; */
 }
-
+.title_exercise{
+    display: flex;
+    color: var(--color8);
+    background-color: var(--color2);
+    align-self: center;
+    justify-content: center;
+    margin: 0 0 10px 0px
+}
 .report__user {
     /* background: green; */
     margin-left: var(--layout-box-x);
@@ -206,7 +213,7 @@ details {
     color: var(--color5);
 }
 .card__body p{
-    margin: 10px 0;
+    margin: 10px 0px;
     color: var(--color6);
 }
 .card__footer{
