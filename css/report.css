@@ -126,6 +126,14 @@ body {
     margin-right: var(--layout-box-x);
     margin-bottom: var(--layout-box-y);
 }
+
+.report__error{
+    display: flex;
+    color: var(--color1);
+    justify-content: center;
+    border-bottom: solid 2px var(--color7);
+
+}
 .details__description{
     /* background: red;  */
     /* width: 80px; */

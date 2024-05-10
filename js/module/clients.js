@@ -594,7 +594,6 @@ export const getClientsWithoutRequest = async () => {
         })
         }
     })
-    console.log('******************  Ejercicio 2 - de Composicion externa  ******************')
     return clientsWhoDontRequest
 }
 

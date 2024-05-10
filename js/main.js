@@ -131,9 +131,9 @@ import {
 //3
 // console.log(await getClientsWithoutPaymentsAndRequest());
 //4
-console.log(await getEmployeesWithoutOffices());
+// console.log(await getEmployeesWithoutOffices());
 //5
-// console.log(await getEmployeesWithoutClients());
+console.log(await getEmployeesWithoutClients());
 //6
 // console.log(await getEmployeesWithoutClientsAndTheirOffices());
 //7

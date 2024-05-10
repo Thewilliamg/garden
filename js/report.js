@@ -771,7 +771,15 @@ queryAboutTable11.addEventListener("click", async (e) => {
             </div>
             `;
         });
-        report__container.innerHTML = plantilla;
+        if (!data) {
+            report__container.innerHTML = plantilla;
+        }
+        else{
+            report__container.innerHTML = `
+                <div class="report__error">
+                    <div>No se encuentra informacion relacionada</div>
+                </div>`
+        }
     }
 })
 
@@ -855,8 +863,8 @@ queryAboutExternalTable4.addEventListener("click", async (e) => {
     let [, report__container] = queryAboutExternalTable4.children
     if (!report__container.innerHTML) {
         let data = await getEmployeesWithoutOffices();
+        console.log(data)
         let plantilla = "";
-        console.log(data);
         data.forEach(val => {
             plantilla += `
                 <div class="report__card">
@@ -866,6 +874,46 @@ queryAboutExternalTable4.addEventListener("click", async (e) => {
                 </div>
             `;
         }); 
-        report__container.innerHTML = plantilla;
+        if (!data) {
+            report__container.innerHTML = plantilla;
+        }
+        else{
+            report__container.innerHTML = `
+                <div class="report__error">
+                    <div>No se encuentra informacion relacionada</div>
+                </div>`
+        }
+    }
+})
+const queryAboutExternalTable5 = document.querySelector("#queryAboutExternalTable5");
+queryAboutExternalTable5.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable5.children
+    if (!report__container.innerHTML) {
+        let data = await getEmployeesWithoutClients();
+        console.log(!data.lenght);
+        let plantilla = "";
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>Codigo del cliente: ${val.code}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Cliente sin pagos: </b>${ val.name} </p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        if (!data.lenght) { 
+            report__container.innerHTML = plantilla;
+        }
+        else{
+            report__container.innerHTML = `
+                <div class="report__error">
+                    <div>No se encuentra informacion relacionada</div>
+                </div>`
+        }
     }
 })
