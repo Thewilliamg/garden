@@ -34,7 +34,8 @@ import {
     getProductsWithoutRequest,
     getProductsWithoutRequestWithDescription,
     OfficesExcludingSalesEmpWithFruitPurchases,
-    getClientRequestsWithoutPayments
+    getClientRequestsWithoutPayments,
+    getEmployeesWithoutClientsAndTheirBosses
 } from "./module/clients.js"
 import {
     getRequestDeliveredInJanuary,
@@ -903,7 +904,7 @@ queryAboutExternalTable5.addEventListener("click", async (e) => {
             </div>
             `;
         });
-        if (!data.lenght) { 
+        if (!data) { 
             report__container.innerHTML = plantilla;
         }
         else{
@@ -942,7 +943,208 @@ queryAboutExternalTable6.addEventListener("click", async (e) => {
             </div>
             `;
         });
+        if (!data) { 
+            report__container.innerHTML = plantilla;
+        }
+        else{
+            report__container.innerHTML = `
+                <div class="report__error">
+                    <div>No se encuentra informacion relacionada</div>
+                </div>`
+        }
+    }
+})
+const queryAboutExternalTable7 = document.querySelector("#queryAboutExternalTable7");
+queryAboutExternalTable7.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable7.children
+    if (!report__container.innerHTML) {
+        let data = await getEmployeesWithoutOfficeAndWithoutClients();
+        let plantilla = "";
+        let j = 0;
+        data.forEach(val => {
+            j += 1;
+            plantilla += `
+            <div class="report__card">
+                <div class="card__title">
+                    <div>Empleado ${j}: ${val.name}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck" style="color=red">
+                        <p><b>Codigo empleado: </b>${val.code} </p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        if (!data) { 
+            report__container.innerHTML = plantilla;
+        }
+        else{
+            report__container.innerHTML = `
+                <div class="report__error">
+                    <div>No se encuentra informacion relacionada</div>
+                </div>`
+        }
+    }
+})
+const queryAboutExternalTable8 = document.querySelector("#queryAboutExternalTable8");
+queryAboutExternalTable8.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable8.children
+    if (!report__container.innerHTML) {
+        let data = await getProductsWithoutRequest();
+        let plantilla = "";
+        let j = 0;
+        data.forEach(val => {
+            j += 1;
+            plantilla += `
+            <div class="report__card">
+                <div class="card__title">
+                    <div>${j}. Producto codigo: ${val.product_code}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre del producto: </b>${val.product_name} </p>
+                        <p><b>Gama: </b>${ val.gama} </p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        console.log(!data.lenght) //esta bien este lenght
         if (!data.lenght) { 
+            report__container.innerHTML = plantilla;
+        }
+        else{
+            report__container.innerHTML = `
+                <div class="report__error">
+                    <div>No se encuentra informacion relacionada</div>
+                </div>`
+        }
+    }
+})
+const queryAboutExternalTable9 = document.querySelector("#queryAboutExternalTable9");
+queryAboutExternalTable9.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable9.children
+    if (!report__container.innerHTML) {
+        let data = await getProductsWithoutRequestWithDescription();
+        let plantilla = "";
+        let j = 0;
+        let descriptionText = "";
+        data.forEach(val => {
+            j += 1;
+            //evitar la salida "unidefined"
+            if (val.description===undefined){descriptionText="No tiene descripción"} else {descriptionText=val.description}
+            plantilla += `
+            <div class="report__card">
+                <div class="card__title">
+                    <div>${j}. Producto código: ${val.product_code}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre del producto: </b>${val.product_name} </p>
+                        <p><b>Descripción: </b>${descriptionText}.</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        if (!data.lenght) { 
+            report__container.innerHTML = plantilla;
+        }
+        else{
+            report__container.innerHTML = `
+                <div class="report__error">
+                    <div>No se encuentra informacion relacionada</div>
+                </div>`
+        }
+    }
+})
+const queryAboutExternalTable10 = document.querySelector("#queryAboutExternalTable10");
+queryAboutExternalTable10.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable10.children
+    if (!report__container.innerHTML) {
+        let data = await OfficesExcludingSalesEmpWithFruitPurchases();
+        let plantilla = "";
+        let j = 0;
+        let descriptionText = "";
+        data.forEach(val => {
+            j += 1;
+            plantilla += `
+            <div class="report__card">
+                <div class="card__title">
+                    <div>${j}. Oficina: ${val}</div>
+                </div>
+            </div>
+            `;
+        });
+        if (!data.lenght) { 
+            report__container.innerHTML = plantilla;
+        }
+        else{
+            report__container.innerHTML = `
+                <div class="report__error">
+                    <div>No se encuentra informacion relacionada</div>
+                </div>`
+        }
+    }
+})
+const queryAboutExternalTable11 = document.querySelector("#queryAboutExternalTable11");
+queryAboutExternalTable11.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable11.children
+    if (!report__container.innerHTML) {
+        let data = await getClientRequestsWithoutPayments();
+        let plantilla = "";
+        let j = 0;
+        data.forEach(val => {
+            j += 1;
+            plantilla += `
+            <div class="report__card">
+                <div class="card__title">
+                    <div> Producto código: ${val.Codigo}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre del cliente: </b>${val.Nombre} </p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        if ((!data)||(!!data.length)) { 
+            report__container.innerHTML = plantilla;
+        }
+        else{
+            report__container.innerHTML = `
+                <div class="report__error">
+                    <div>No se encuentra informacion relacionada</div>
+                </div>`
+        }
+    }
+})
+
+const queryAboutExternalTable12 = document.querySelector("#queryAboutExternalTable12");
+queryAboutExternalTable12.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable12.children
+    if (!report__container.innerHTML) {
+        let data = await getEmployeesWithoutClientsAndTheirBosses();
+        let plantilla = "";
+        let j = 0;
+        data.forEach(val => {
+            j += 1;
+            plantilla += `
+            <div class="report__card">
+                <div class="card__title">
+                    <div> ${j}. Nombre empleado: ${val.name}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre del jefe: </b>${val.boss_name} </p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        if ((!data)||(!!data.length)) { 
             report__container.innerHTML = plantilla;
         }
         else{

@@ -668,12 +668,12 @@ export const getEmployeesWithoutOfficeAndWithoutClients = async () => {
     employees.forEach((emp) => {
         const clients = getClientByEmployeeCode(emp.employee_code)
         if (!clients.length && emp.code_office===null) {
-            console.log(!clients.length && emp.code_office===null)
+            // console.log(!clients.length && emp.code_office===null)
             datas.push({
                 code: emp.employee_code,
                 name: emp.name
             });
-            console.log("exit")
+            // console.log("exit")
         }
     })
     return datas
@@ -687,7 +687,7 @@ export const getProductsWithoutRequest = async () => {
     products.forEach( (p) =>{
         const details = getRequestDetailsByProductCode(p.code_product)
         if (!details.length) {
-            console.log(details)
+            // console.log(details)
             data.push({
                 product_code:p.code_product,
                 product_name:p.name,
@@ -752,7 +752,7 @@ export const getClientRequestsWithoutPayments = async () => {
       let payments = await getPaymentByClientCode(client.client_code);
       let requests = await getRequestByCodeClientexample11(client.client_code);
       if ((!payments.length) && (!!requests.length)) {
-        data.push(client.client_code);
+        data.push({Codigo:client.client_code, Nombre:client.client_name});
       }
     }
     return data;

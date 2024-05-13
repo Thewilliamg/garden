@@ -135,15 +135,15 @@ import {
 //5
 // console.log(await getEmployeesWithoutClients());
 //6
-console.log(await getEmployeesWithoutClientsAndTheirOffices());
+// console.log(await getEmployeesWithoutClientsAndTheirOffices());
 //7
 // console.log(await getEmployeesWithoutOfficeAndWithoutClients()); //va a dar vacio
 //8
 // console.log(await getProductsWithoutRequest());
 //9
-//console.log(await getProductsWithoutRequestWithDescription());
+// console.log(await getProductsWithoutRequestWithDescription());
 //10
-//console.log(await OfficesExcludingSalesEmpWithFruitPurchases());
+// console.log(await OfficesExcludingSalesEmpWithFruitPurchases());
 //11
 // console.log(await getClientRequestsWithoutPayments());
 //12
