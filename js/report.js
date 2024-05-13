@@ -1,9 +1,9 @@
+import "./component/clock.js";
 import {
     getAllOfficesCodeAndCity,
     getAllOfficesAndPhonesFromSpain,
 
 } from "./module/offices.js"
-
 import {
     getAllNameSurnamesAndEmailInCargeOfBossSeven,
     getBossesFullnameAndEmail,
@@ -46,7 +46,6 @@ import {
     getRequestByCodeClient
 } from "./module/requests.js"
 
-
 import {
     getPaymentsByYear,
     getAllPaymentStatus,
@@ -60,8 +59,6 @@ import {
 import {
     lisOfProductRangesPurchasedByClient
 } from "./module/request_details.js"
-
-// import { request } from "http"
 
 const queryAboutOneTable1 = document.querySelector("#queryAboutOneTable1");
 queryAboutOneTable1.addEventListener("click", async (e) => {
