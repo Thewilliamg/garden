@@ -914,3 +914,42 @@ queryAboutExternalTable5.addEventListener("click", async (e) => {
         }
     }
 })
+
+const queryAboutExternalTable6 = document.querySelector("#queryAboutExternalTable6");
+queryAboutExternalTable6.addEventListener("click", async (e) => {
+    let [, report__container] = queryAboutExternalTable6.children
+    if (!report__container.innerHTML) {
+        let data = await getEmployeesWithoutClientsAndTheirOffices();
+        let plantilla = "";
+        let j = 0;
+        data.forEach(val => {
+            j += 1;
+            plantilla += `
+            <div class="report__card">
+                <div class="card__title">
+                    <div>Empleado ${j}. sin clientes: ${val.name}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo empleado: </b>${val.code} </p>
+                        <p><b>Codigo oficina: </b>${ val.office.city} </p>
+                        <p><b>Lugar: </b>${ val.office.region}, ${ val.office.country} </p>
+                        <p><b>Codigo Postal </b>${ val.office.postal_code} </p>
+                        <p><b>Movil: </b>${ val.office.movil} </p>
+                        <p><b>Id de Oficina: </b>${ val.id} </p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        if (!data.lenght) { 
+            report__container.innerHTML = plantilla;
+        }
+        else{
+            report__container.innerHTML = `
+                <div class="report__error">
+                    <div>No se encuentra informacion relacionada</div>
+                </div>`
+        }
+    }
+})

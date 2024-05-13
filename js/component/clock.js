@@ -7,10 +7,10 @@ export const updateClock = () =>{
     `Time: ${hours}:${minutes}:${seconds} /`
     )
 }
-//code for every second updateClock() repeat
+//code for every second updateClock() repeat and let it paste
 setInterval(()=>{
     document.querySelector("#clock").innerText = updateClock();
 },1000)
-let timerId = setInterval(() => alert('tick'), 2000);
-// after 5 seconds stop
-setTimeout(() => { clearInterval(timerId); }, 5000);
+
+// for example: after 5 seconds stop //
+// setTimeout(() => { clearInterval(updateClock()); }, 5000);
