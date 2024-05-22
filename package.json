@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node --watch js/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "all": "npm run clients & npm run employees & npm run gama & npm run office & npm run payments & npm run products & npm run request_details & npm run request",
     "clients": "json-server js/db/clients.json -p 5441",
     "employees": "json-server js/db/employees.json -p 5442",
     "gama": "json-server js/db/gama.json -p 5443",

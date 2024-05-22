@@ -1,6 +1,6 @@
 // 8. Devuelve un listado con todos los pagos que se realizaron en el año `2008` mediante `Paypal`. Ordene el resultado de mayor a menor.
 export const getPaymentsByYear = async (year = 2008) => {
-    let res = await fetch("http://localhost:5445/payments?payment=PayPal")
+    let res = await fetch("http://172.16.101.146:5445/payments?payment=PayPal")
     let data = await res.json();
     let dataUpdate = [];
     data.forEach(request => {
@@ -17,7 +17,7 @@ export const getPaymentsByYear = async (year = 2008) => {
 }
 // 13. Devuelve un listado con todos los pagos que se realizaron en el año 2008 mediante Paypal. Ordene el resultado de mayor a menor.
 export const getPaymentsByYearAndPaypal = async (year = 2008) => {
-    let res = await fetch("http://localhost:5445/payments?payment=PayPal")
+    let res = await fetch("http://172.16.101.146:5445/payments?payment=PayPal")
     let data = await res.json();
     let dataUpdate = [];
     data.forEach(request => {
@@ -33,7 +33,7 @@ export const getPaymentsByYearAndPaypal = async (year = 2008) => {
 }
 // 14. Devuelve un listado con todas las formas de pago que aparecen en la tabla `pago`. Tenga en cuenta que no deben aparecer formas de pago repetidas.
 export const getAllPaymentStatus = async () => {
-    let res = await fetch("http://localhost:5445/payments")
+    let res = await fetch("http://172.16.101.146:5445/payments")
     let data = await res.json();
     let dataUpdate = new Set();
     data.forEach(request => {
@@ -44,7 +44,7 @@ export const getAllPaymentStatus = async () => {
 }
 
 export const getPaymentByClientCode = async (clientCode) => {
-    let res = await fetch(`http://localhost:5445/payments?code_client=${clientCode}`);
+    let res = await fetch(`http://172.16.101.146:5445/payments?code_client=${clientCode}`);
     let data = await res.json();
     return data;
 }
