@@ -1,5 +1,5 @@
 export const getAllStatus = async () => {
-    let res = await fetch("http://localhost:5507/requests");
+    let res = await fetch("http://localhost:5448/requests");
     let data = await res.json();
     let dataUpdate =[];
     data.forEach(i => {

@@ -100,7 +100,7 @@ import {
 
 //  -----------------MULTI-TABLA-------------------
 // 1
-// console.log(await getClientsAndEmployeesNames());
+console.log(await getClientsAndEmployeesNames());
 // 2
 // console.log(await getClientsWhoMadePayment());
 // 3
